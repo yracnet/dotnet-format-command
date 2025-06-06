@@ -1,0 +1,62 @@
+{
+  "name": "dotnet-format-command",
+  "displayName": "dotnet-format-command",
+  "description": "Right-click to format .cs files or folders using dotnet format",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "dotnet-format-command.formatFile",
+          "when": "resourceExtname == .cs",
+          "group": "navigation"
+        },
+        {
+          "command": "dotnet-format-command.formatFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "dotnet-format-command.formatFile",
+          "when": "editorLangId == 'csharp'",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "dotnet-format-command.formatFile",
+        "title": "RUN: Dotnet Format"
+      },
+      {
+        "command": "dotnet-format-command.formatFolder",
+        "title": "RUN: Dotnet Format"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "yarn run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.100.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "eslint": "^9.25.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
